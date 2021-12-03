@@ -1,0 +1,199 @@
+version: "3.0"
+
+intents:
+  - greet
+  - greet2
+  - goodbye
+  - goodbye2
+  - affirm
+  - deny
+  - ambiguous_help
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_intro
+  - find_schedule
+  - meet_advisor
+  - name_major:
+        use_entities:
+        - major
+  - student_info:
+      use_entities:
+        - name
+  - student_id:
+      use_entities:
+        - id     
+  - remove_hold
+  - change_major
+  - hold_type:
+      use_entities:
+        - holdType
+  - majorAdvisingHold_type
+  - acceptance_changeOfMajor
+  - application_changeOfMajor
+  - moreHelp_changeOfMajor
+  - above_60units
+  - below_60units
+
+entities:
+  - name
+  - id
+  - holdType
+  - major
+
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+
+  id:
+    type: text
+    initial_value: "015678263"
+    mappings:
+    - type: custom
+
+  holdType:
+    type: categorical
+    influence_conversation: true
+    values:
+        - essc_hold
+        - maOut_hold
+        - majorProbation_hold
+        - AcademicProbation_hold
+        - maIn_hold
+    mappings:
+    - type: from_entity
+      entity: holdType
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+  - text: Hello! How are you?
+  
+  utter_greet2:
+  - text: "Hi {name}, How can I help you today?."
+  - text: "{name},How may I be of service?"
+  - text: "{name},Is there anything I can help you with?"
+  - text: "{name},How may I be of assitance?"
+
+  utter_service_question:
+    - text: What can I help you with?
+    - text: What can I do for you?
+    - text: How may I be of service?
+    - text: Is there anything I can help you with?
+    - text: How may I be of assitance?
+
+  utter_askname:
+  - text: "Please enter your name"
+
+  utter_askstudentid:
+  - text: "Please type in your student id no"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_major_name:
+  - text: "what is your major? "
+    buttons:
+    - title: CMPE
+      payload: CMPE
+    - title: Civil
+      payload:  Civil
+    - title: Mechanical
+      payload:  Mechanical
+    - title: Electrical
+      payload:  Electrical      
+
+  utter_CMPEadvisor_name:
+  - text: "For CMPE, the advisor is Monica Serna."
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye! Have a great day!"
+
+  utter_goodbye2:
+  - text: "For further help, feel free contact us."
+
+  utter_iamabot:
+  - text: "I am an ESSC virtual assistant, powered by Rasa."
+
+  utter_intro:
+  - text: "At Engineering Student Success Center,we help students throughout their engineering journey.We do Major advising, hold removal, transfer equivalency petitions and more.We also have workshops for helping students with their job search,resume writing and more."
+
+  utter_schedule:
+  - text: "The ESSC center is open on weekdays between 8:30am to 12pm and 1:00pm to 4:30pm."
+
+  utter_virtual_schedule:
+  - text: "We are also available on zoom. You can schedule virtual appointments or you can come to our virtual drop-in hours. Please find the virtual drop-in timings here."
+
+  utter_inperson_schedule:
+  - text: "We are now open. You can schedule appointments via Spartan Connect or you can come to our drop-in hours which is from 11:00am to 12:00pm and 1:00pm to 2:00pm."
+ 
+  utter_more_help_for_major_change:
+  - text: "Here are your options for further help:	1.You can come to our virtual drop-in advising hours 	2.You can also come during our in-person drop-in advising hours M-F 11:00 a.m.-12:00 p.m. and 1:00-2:00 p.m. in ENGR 116 	3.You can also schedule an appointment via Spartan Connect		4.You can also attend virtual Workshop with Monica Montelongo"
+
+  utter_changeOfMajorApplication:
+  - text: "The change of major application process for college of engineering depends on the number of earned units you have (If you don't know how many earned units you have, check your transfer credit report).Please select one which applies to you:"
+    buttons:
+    - title: If below 60 units
+      payload: below_60units
+    - title: If 60 units or above
+      payload:  above_60units
+
+  utter_below60:
+  - text: "If you have less than 60 units then please follow the procedure mentioned on this link- https://www.sjsu.edu/essc/coe-undergraduate-advising/change-major/below-sixty-earned-units.php"
+
+  utter_above60:
+  - text: "If you have more than or equal to 60 units then please follow the procedure mentioned on this link- https://www.sjsu.edu/essc/coe-undergraduate-advising/change-major/above-sixty-earned-units.php"
+
+  utter_proofOfIntent:
+  - text: "Do you need any proof of intent for changing your major?Students who need proof of their intent to change their major to the College of Engineering can use the ESSC Change of Major Transition Plan. Depending on your advisor, you might be required to have an ESSC advisor sign this form in order to get an advising hold removed. Please attend a Change of Major workshop or make an appointment with Monica Montelongo through Spartan Connect."
+
+  utter_acceptanceResult_changeOfMajor:
+  - text: "Due to impaction, admittance is not guaranteed and will depend on the capacity of the major. Strive for the highest GPA possible in the prerequisite courses necessary to apply for the major. Also, you are allowed to apply twice for a major."
+  
+  utter_changeofmajortype:
+  - text: "Do you want to change out of college of engineering or within college of engineering? "
+
+  utter_holdtype:
+  - text: "What type of hold do you have?"
+    # buttons:
+    # - title: Engineering Success Center Hold
+    #   #payload: 'essc_hold'
+    # - title: Major Advising Hold - within college of engineering
+    #   #payload:  '/hold_type' 
+    # - title: Major Advising Hold - out of college of engineering
+    #   #payload:  '/hold_type'   
+    # - title: Major Probation Hold 
+    #   #payload:  '/hold_type'        
+    # - title: Academic Probation Hold
+    #   #payload:  '/hold_type'    
+
+  utter_majoradvisor:
+  - text: "You can find your major advisor from the advisor list on this link https://www.sjsu.edu/essc/coe-undergraduate-advising/advising/index.php#major-advisor-list. " 
+ 
+  utter_holdaction:
+    # - condition:
+    #     - type: slot
+    #       name: "holdType"
+    #       value: "essc_hold"
+    - text: "For essc hold removal, You need to see one of our ESSC advisors."
+
+   # - text: "Sorry, I did not understand. Please contact ESSC for further help!"
+
+  utter_studentInfo:
+  - text: "Can you tell me your name and student ID?" 
+ 
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

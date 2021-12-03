@@ -1,0 +1,93 @@
+version: "3.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - action: utter_service_question
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+  - action: utter_service_question
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get name of major advisor 
+  steps:
+    - intent: meet_advisor
+    - action: utter_major_name
+    - intent: name_major
+      entities:
+        - major: CMPE
+    - action: utter_CMPEadvisor_name
+    - action: utter_goodbye2
+    - action: utter_goodbye
+
+- story: change of major acceptance 
+  steps:
+    - intent: acceptance_changeOfMajor
+    - action: utter_acceptanceResult_changeOfMajor
+    - action: utter_goodbye2
+
+- story: major advising hold removal
+  steps:
+  - intent: ambiguous_help
+  - action: utter_askname
+  - intent: student_info
+    entities:
+      - name: "Pragati"
+  - slot_was_set:
+    - name: "Pragati"
+  - action: utter_greet2
+  - intent: remove_hold
+  - action: utter_holdtype
+  - slot_was_set:
+    - holdType: "essc_hold"
+  - intent: hold_type
+  - action: utter_holdaction
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye2
+  - action: utter_schedule
+
+
+- story: change of major in Engineering
+  steps:
+  - intent: ambiguous_help
+  - action: utter_askname
+  - intent: student_info
+    entities:
+      - name: "Pragati"
+  - slot_was_set:
+    - name: "Pragati"
+  - action: utter_greet2
+  - intent: change_major
+  # - action: utter_changeofmajortype
+  # - intent: majorAdvisingHold_type
+  - action: utter_changeOfMajorApplication
+  - intent: below_60units
+  - action: utter_below60
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_more_help_for_major_change
+  - action: utter_goodbye
+

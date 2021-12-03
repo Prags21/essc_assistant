@@ -1,0 +1,236 @@
+version: "3.0"
+
+nlu:
+- regex: id
+  examples: |
+   - [0-9]{9}
+
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: ambiguous_help
+  examples: |
+    - Please help me
+    - I have a question
+    - I need help
+    - Please answer my question
+    - Can you please help me 
+    - help please
+
+
+- intent: ask_intro
+  examples: |
+    - What is ESSC?
+    - What is Engineering Student Success Center?
+    - What does ESSC do?
+    - What does Engineering Student Success Center do?
+    - ESSC work
+    - Why ESSC?
+
+- intent: find_schedule
+  examples: |
+    - When is ESSC open?
+    - The Engineering Student Success Center timing
+    - Is ESSC open?
+    - When can I come to the Center?
+    - ESSC working hours
+    - ESSC virtual and in-person timings
+    - When can I visit the ESSC?
+    - Are there any virtual timings?
+    - Can I come in-person?
+
+- intent: student_info
+  examples: |
+    - My name is [Pragati]{"entity":"name", "value":"Pragati"}
+    - I am [Juhi]{"entity":"name", "value":"Juhi"}
+    - [Parth]{"entity":"name", "value":"Parth"}
+    - Everyone calls me [David]{"entity":"name", "value":"David"}
+    - [Snehal]{"entity":"name", "value":"Snehal"}
+    - My name is [Rohan]{"entity":"name", "value":"Rohan"}
+
+
+- intent: student_id
+  examples: |
+    - My id is [015971683]{"entity": "id" , "value": "015971683"}    
+    - My id number is [015544683]{"entity": "id" , "value": "015544683"}    
+    - My student id is [385432567]{"entity": "id" , "value": "785432567"}    }
+    - My student id number is [997846464]{"entity": "id" , "value": "997846464"}    
+    - My student number is [766830159]{"entity": "id" , "value": "766830159"}    
+    - My id is [487264783]{"entity": "id" , "value": "487264783"}    
+
+- intent: remove_hold
+  examples: |
+    - How do I remove the hold from my account?
+    - I have a hold
+    - My account is blocked
+    - How do I unblock my account?
+    - Unable to enroll due to hold
+    - I want to get rid off hold
+    - Take the hold off my account
+    - remove hold
+
+- intent: meet_advisor
+  examples: |
+    - Who is my major advisor?
+    - Who is my advisor?
+    - Need to meet with an advisor
+    - Need advisor to remove my hold
+    - What is the name of my major advisor?
+
+- intent: name_major
+  examples: |
+    - My major is [Civil]{"entity":"major", "value":"Civil"}
+    - I am from [CMPE]{"entity":"major", "value":"CMPE"}
+    - [Mechanical]{"entity":"major", "value":"Mechanical"}
+    - [Electrical]{"entity":"major", "value":"Electrical"} Engineering
+  
+- intent: change_major
+  examples: |
+    - I want to change my major
+    - I want to switch to engineering
+    - switch major
+    - change the major
+    - I need to change my major
+
+- intent: hold_type
+  examples: |
+    - I have [essc hold]{"entity":"holdType", "value":"essc_hold"}.
+    - [major advising outside college of engineering]{"entity":"holdType", "value":"maOut_hold"}
+    - I have [major advising hold]{"entity":"holdType", "value":"maIn_hold"}
+    - I have [Engineering success center hold]{"entity":"holdType", "value":"essc_hold"}
+    - I have [major probation hold]{"entity":"holdType", "value":"majorProbation_hold"}
+    - [Academic Probation Hold]{"entity":"holdType", "value":"academicProbation_hold"}
+
+
+- intent: below_60units
+  examples: |
+    - I have below 60units.
+    - below 60
+    - less than 60 units
+    - less than 60
+
+- intent: above_60units
+  examples: |
+    - I have above 60units.
+    - above 60
+    - more than 60 units
+    - more than 60
+
+- intent: majorAdvisingHold_type
+  examples: |
+    - into college of engineering
+    - I am changing my major into college of engineering
+    - I am staying in the same major
+    - within college of engineering
+    - within
+
+- intent: acceptance_changeOfMajor
+  examples: |
+    - How likely am I to get accepted?
+    - Will I be accepted to the major?
+    - Will my change of major get approved?
+    - Will I be accepted in major?
+    - Will my application be approved for change of major?
+    - WHat are the chances of beoing accepted?
+
+- intent: application_changeOfMajor
+  examples: |
+    - Where is the application for change of major?
+    - I can't find the form for change of major
+    - Where is the form for change of major?
+    - I can't find the application for change of major
+    - Where do I apply for change of major?
+    - Change of major application link
+    - link for change of major application
+
+- intent: moreHelp_changeOfMajor
+  examples: |
+    - How can I get more help?
+    - I need more help for change of major
+    - How can I meet an advisor for more help?

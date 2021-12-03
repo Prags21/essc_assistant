@@ -1,0 +1,24 @@
+version: "3.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Say 'ESSC intro' anytime the ask introduction
+  steps:
+  - intent: ask_intro
+  - action: utter_intro
+
+- rule: Say 'ESSC schedule' anytime the ask introduction
+  steps:
+  - intent: find_schedule
+  - action: utter_inperson_schedule
+  - action: utter_virtual_schedule
